@@ -1,0 +1,17 @@
+#main-container{
+    border: solid red 2px;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.pokemon-container {
+    border: 1px solid blue;
+    box-sizing: border-box;
+}
+
+/* .pokemon-container img {
+    max-width: 40%;
+    height: auto;
+} */
