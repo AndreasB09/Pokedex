@@ -1,13 +1,27 @@
 const mainContainer = document.getElementById("main-container");
+const buttonStart = document.getElementById("btn-start");
+const buttonPrev = document.getElementById("btn-prev");
+const buttonNext = document.getElementById("btn-next");
+const buttonRandom = document.getElementById("btn-random");
+
 
 const pokedexUrl = "https://pokeapi.co/api/v2/pokemon?offset=0&limit=3";
+let pokemonList = [];
 
 async function displayPokemonList() {
     await updatePokemonList(pokedexUrl);
 
+    clearMainCOntainer();
+
     for (const pokemon of pokemonList.results) {
         const pokemonDetails = await getPokemonDetails(pokemon.url);
         displayPokemonDetails(pokemonDetails);
+    }
+}
+
+function clearMainCOntainer() {
+    while (mainContainer.firstChild) {
+        mainContainer.removeChild(mainContainer.firstChild);
     }
 }
 
@@ -56,5 +70,22 @@ async function updatePokemonList(url) {
         console.error("Error fetching Pokemon list:", error);
     }
 }
+
+//button events
+buttonStart.addEventListener("click", () => {
+    displayPokemonList();
+});
+
+buttonNext.addEventListener("click", () => {
+  if (pokemonList.next) {
+    displayPokemonList(pokemonList.next);
+  }
+});
+
+buttonPrev.addEventListener("click", () => {
+  if (pokemonList.previous) {
+    displayPokemonList(pokemonList.previous);
+  }
+});
 
 displayPokemonList();
