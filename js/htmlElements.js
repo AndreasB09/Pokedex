@@ -1,8 +1,8 @@
-export const buttonStart = document.getElementById("btn-start")
+// get the html elements:
+export const buttonHome = document.getElementById("btn-home")
 export const buttonPrev = document.getElementById("btn-prev")
 export const buttonNext = document.getElementById("btn-next")
-export const buttonRandom = document.getElementById("btn-random")
-export const errorMsg = document.getElementById("error-msg")
+export const errorMsgEl = document.getElementById("error-msg")
 export const mainContainer = document.getElementById("main-container")
-export const searchInput = document.getElementById("input-search")
-export const buttonSearch = document.getElementById("btn-search")
+export const searchInputEl = document.getElementById("search-input")
+export const searchButton = document.getElementById("search-button")

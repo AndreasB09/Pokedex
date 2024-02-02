@@ -1,22 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokedex</title>
-    <link rel="stylesheet" href="style.css">
     <script src="js/app.js" type="module"></script>
-</head>
-<body>
+    <!-- <script src="js/fetchExamples.js" defer></script> -->
+    <link rel="stylesheet" href="style.css">
+    <title>Asynkron Javascript</title>
+  </head>
+  <body>
     <nav>
-        <button id="btn-start">Start</button>
-        <button id="btn-prev">Previous</button>
-        <button id="btn-next">Next</button>
-        <button id="btn-random">Random</button>
-        <input type="text" id="input-search" placeholder="Type pokemon name">
-        <button id="btn-search">Search</button>
+      <button id="btn-home">Home</button>
+      <button id="btn-prev">Previous</button>
+      <button id="btn-next">Next</button>
+      <input type="text" id="search-input" placeholder="search pokemon by name">
+      <button id="search-button">Search</button>
     </nav>
     <p id="error-msg"></p>
-    <div id="main-container"></div>
-</body>
+
+    <div id="main-container">
+      <!-- pokemon id, pokemon name, pokemon image 
+      event: onclick => show pokemon detailjs in full page
+      -->
+    </div>
+
+  </body>
 </html>
