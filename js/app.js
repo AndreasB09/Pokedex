@@ -1,11 +1,12 @@
 import { 
-  buttonHome, 
+  buttonStart, 
   buttonNext, 
-  buttonPrev, 
-  errorMsgEl, 
+  buttonPrev,
+  buttonRandom,
+  buttonSearch,
+  errorMsg, 
   mainContainer, 
-  searchInputEl, 
-  searchButton
+  searchInputEl
 } from "./htmlElements.js"
 
 import { getData } from "./data.js"
@@ -14,7 +15,7 @@ import { getData } from "./data.js"
 let pokemonList = []
 
 // nav events:
-buttonHome.addEventListener("click", () => {
+buttonStart.addEventListener("click", () => {
   displayPokemonList()
 })
 
@@ -185,7 +186,7 @@ async function displayFilteredPokemonList(pokemonArray) {
   };
 }
 
-searchButton.addEventListener("click", async () => {
+buttonSearch.addEventListener("click", async () => {
   const searchText = searchInputEl.value.toLowerCase()
   // check if input is valid
   if (searchText.length < 3) {

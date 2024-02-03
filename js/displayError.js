@@ -1,4 +1,4 @@
-import { errorMsgEl } from "./htmlElements.js"
+import { errorMsg } from "./htmlElements.js"
 
 /**
  * Displays an error message on the page
@@ -7,5 +7,5 @@ import { errorMsgEl } from "./htmlElements.js"
 export const displayError = (errorMessage) => {
   if (errorMessage) console.warn(errorMessage)
 
-  errorMsgEl.textContent = errorMessage
+  errorMsg.textContent = errorMessage
 }
