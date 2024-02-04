@@ -14,7 +14,7 @@ import { getData } from "./data.js"
 
 let pokemonList = []
 
-// nav events:
+// button events
 buttonStart.addEventListener("click", () => {
   displayPokemonList()
 })
@@ -31,19 +31,13 @@ buttonPrev.addEventListener("click", () => {
   else displayPokemonList(`https://pokeapi.co/api/v2/pokemon?offset=${pokemonList.lastPage}&limit=20`)
 })
 
-
-
-
-
 /**
- * Updates pokemonList
- * @param {String} url - the url we want to get data from
+ * @param {String} url
  */
 const updatePokemonList = async (url) => pokemonList = await getData(url)
 
 /**
- * Updates the pokemonList.lastPage to given perPage-param
- * @param {Number} perPage - number of pokemons per page (default 20)
+ * @param {Number} perPage
  * @returns 
  */
 const setLastPage = (perPage = 20) => pokemonList.lastPage = Math.floor(pokemonList.count/perPage)*perPage
@@ -57,11 +51,8 @@ async function displayPokemonList(url) {
 
   mainContainer.innerHTML = ""
 
-  //pokemonList.results.forEach(async pokemon => { // array methods dont fully support async-await, hence we use a normal for-of loop instead:
   for (const pokemon of pokemonList.results) {
 
-    // get the id and image of the pokemon:
-    //console.log(pokemon.url)
     const pokemonExtraData = await getData(pokemon.url)
 
     const containerEl = document.createElement("div")
@@ -80,10 +71,9 @@ async function displayPokemonList(url) {
 }
 
 /**
- * Creates an element of the given type, with given properties and then returns it
- * @param {String} type - default "div"
- * @param {Object} properties - "html object properties"
- * @returns Html element
+ * @param {String} type
+ * @param {Object} properties
+ * @returns
  */
 const makeElement = (type = "div", properties = {}) => {
   const element = document.createElement(type)
@@ -102,19 +92,7 @@ const makeElement = (type = "div", properties = {}) => {
 async function displayPokemonDetails(pokemonData) {
   mainContainer.innerHTML = ""
 
-  /* const name = pokemonData.name
-  const height = pokemonData.height */
-
   const {id, name, sprites, base_experience, height, weight, types, stats} = pokemonData
-
-  // id, name
-  // base_experience
-  // height (må deles på 10 for å få meter)
-  // weight (må deles på 10 for å få kg)
-  // types (array)
-  // stats (array)
-
-  
 
   const containerEl = makeElement()
   const titleEl = makeElement("h2", { textContent: `${id}. ${name}`})
@@ -158,17 +136,12 @@ async function displayPokemonDetails(pokemonData) {
 
 displayPokemonList()
 
-
-// displays list of pokemons based on array of pokemons
 async function displayFilteredPokemonList(pokemonArray) {
 
   mainContainer.innerHTML = ""
 
-  //pokemonList.results.forEach(async pokemon => { // array methods dont fully support async-await, hence we use a normal for-of loop instead:
   for (const pokemon of pokemonArray) {
 
-    // get the id and image of the pokemon:
-    //console.log(pokemon.url)
     const pokemonExtraData = await getData(pokemon.url)
 
     const containerEl = document.createElement("div")
@@ -188,18 +161,14 @@ async function displayFilteredPokemonList(pokemonArray) {
 
 buttonSearch.addEventListener("click", async () => {
   const searchText = searchInputEl.value.toLowerCase()
-  // check if input is valid
   if (searchText.length < 3) {
     displayError("Please enter 3 or more characters")
     return
   }
-  // clear error message:
   displayError()
-  
-  // x 1. get the list of all pokemons in the API-database (this can be done by setting the limit to -1 or a number equal or larger to the total amount of pokemons in the database)
+
   const pokemonResult = await getData("https://pokeapi.co/api/v2/pokemon?offset=0&limit=-1")
   const pokemonArray = pokemonResult.results
-  // 2. filter the results based on the search-query
   const filteredPokemons = pokemonArray.filter((pokemon) => {
     if (pokemon.name.includes(searchText)) {
       return true
@@ -207,11 +176,10 @@ buttonSearch.addEventListener("click", async () => {
   
   })
   
-  // check if any matched are found, if none display an error to the user:
   if (!filteredPokemons.length) {
     displayError("No pokemons found")
     return
   } 
-  // x 3. diplay the filtered results
+  
   displayFilteredPokemonList(filteredPokemons)
 })
