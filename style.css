@@ -45,3 +45,16 @@ input {
     background-color: #cde5d7;
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
+
+.type-container {
+    display: flex;
+}
+
+.type-box {
+    border: solid 1px black;
+    margin: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    text-shadow: 1px 1px 1px black;
+}
