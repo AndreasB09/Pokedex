@@ -3,16 +3,24 @@
     padding: 0;
 }
 
+body {
+    background-color: #cbf3f0;
+}
+
 nav {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     background-color: #2ec4b6;
     padding: 50px;
 }
 
 #main-container {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
     background-color: #cbf3f0;
     padding: 50px;
 }
@@ -41,9 +49,17 @@ input {
     border: solid 2px black;
     border-radius: 10px;
     margin: 10px;
-    padding: 10px;
+    padding: 20px;
     background-color: #cde5d7;
     font-family: Georgia, 'Times New Roman', Times, serif;
+    display: flex;
+    align-items: center;
+    max-width: 450px;
+}
+
+.stats-container {
+    margin: 20px;
+    margin-left: 50px;
 }
 
 .type-container {
@@ -57,4 +73,9 @@ input {
     border-radius: 5px;
     color: white;
     text-shadow: 1px 1px 1px black;
+}
+
+.base-container {
+    display: flex;
+    flex-direction: column;
 }
