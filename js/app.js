@@ -6,7 +6,7 @@ import { 
   buttonSearch,
   errorMsg, 
   mainContainer, 
-  searchInputEl
+  searchInput
 } from "./htmlElements.js"
 
 import { getData } from "./data.js"
@@ -42,7 +42,6 @@ const updatePokemonList = async (url) => pokemonList = await getData(url)
  */
 const setLastPage = (perPage = 20) => pokemonList.lastPage = Math.floor(pokemonList.count/perPage)*perPage
 
-// displays list of pokemons based on given url
 async function displayPokemonList(url) {
   await updatePokemonList(url)
   setLastPage()
@@ -56,8 +55,11 @@ async function displayPokemonList(url) {
     const pokemonExtraData = await getData(pokemon.url)
 
     const containerEl = document.createElement("div")
+    containerEl.classList.add("pokemon-container")
     const titleEl = document.createElement("h2")
-    titleEl.textContent = `${pokemonExtraData.id}. ${pokemon.name}`
+    const upperCaseName = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
+    titleEl.textContent = `${pokemonExtraData.id}. ${upperCaseName}`;
+
     const imageEl = document.createElement("img")
     imageEl.alt = `image of ${pokemon.name}`
     imageEl.style = "max-width: 40%;"
@@ -160,7 +162,7 @@ async function displayFilteredPokemonList(pokemonArray) {
 }
 
 buttonSearch.addEventListener("click", async () => {
-  const searchText = searchInputEl.value.toLowerCase()
+  const searchText = searchInput.value.toLowerCase()
   if (searchText.length < 3) {
     displayError("Please enter 3 or more characters")
     return
